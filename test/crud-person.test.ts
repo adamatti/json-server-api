@@ -1,9 +1,14 @@
 import * as frisby from "frisby"
 import * as uuid from "uuid4"
 import {logFactory} from "../src/log"
+import db = require("../src/dbRepo")
 
 const logger = logFactory("crud-person")
 const Joi = frisby.Joi
+
+beforeAll ( async () => {
+    await db.setDb({})
+})
 
 test("Save person", async () => {
     const obj = {id:uuid(),name:"adamatti"}

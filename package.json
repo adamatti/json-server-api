@@ -3,6 +3,7 @@
     "scripts": {
         "build": "tsc",
         "start": "ts-node src/index.ts",
+        "start:test":"DB_PATH=./tmp/dbTest.json npm start",
         "test": "DB_PATH=./tmp/dbTest.json jest --detectOpenHandles"
     },
     "dependencies": {
@@ -10,6 +11,7 @@
         "body-parser": "^1.18.3",
         "express": "^4.16.4",
         "lodash": "^4.17.11",
+        "pluralize": "^7.0.0",
         "ts-node": "^8.0.2",
         "typescript": "^3.3.3",
         "uuid4": "^1.1.4"

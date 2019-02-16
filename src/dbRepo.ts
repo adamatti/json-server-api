@@ -49,16 +49,17 @@ export async function save(name:string, obj:any): Promise<any>{
 }
 
 export async function findById(name:string, id: any): Promise<any>{
-    return _.find(db[name], it => it.id == id)
+    return _.find(db[name], {id})
 }
 
 export async function list(name:string,criteria:{}): Promise<Array<any>>{
-    //TODO implement filter by criteria
-    return db[name] || [];
+    const list = db[name] || [];
+    return _.filter(list,criteria);
 }
 
 export async function count(name:string, criteria: {}): Promise<number>{
-    const collection = db[name]
+    const list = db[name] || [];
+    const collection = _.filter(list,criteria)
     return collection ? collection.length : 0
 }
 
