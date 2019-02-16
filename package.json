@@ -1,9 +1,13 @@
 {
+    "license": "MIT",
     "scripts": {
         "start": "ts-node src/index.ts",
-        "test": "jest --detectOpenHandles"
+        "test-": "jest --detectOpenHandles",
+        "test": "jest"
     },
     "dependencies": {
+        "bluebird": "^3.5.3",
+        "body-parser": "^1.18.3",
         "express": "^4.16.4",
         "lodash": "^4.17.11",
         "ts-node": "^8.0.2",
@@ -12,6 +16,8 @@
     },
     "devDependencies": {
         "@types/async": "^2.4.1",
+        "@types/bluebird": "^3.5.25",
+        "@types/bluebird-global": "^3.5.10",
         "@types/express": "^4.16.1",
         "@types/frisby": "^2.0.5",
         "@types/jest": "^24.0.5",

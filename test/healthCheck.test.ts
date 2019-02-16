@@ -1,11 +1,6 @@
-import * as app from "../src"
 import * as frisby from "frisby"
 
 const Joi = frisby.Joi
-
-beforeAll(() => {
-    return app
-})
 
 test("call health check", () => {
     return frisby.get("http://localhost:3000/")
