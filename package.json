@@ -1,9 +1,9 @@
 {
     "license": "MIT",
     "scripts": {
+        "build": "tsc",
         "start": "ts-node src/index.ts",
-        "test-": "jest --detectOpenHandles",
-        "test": "jest"
+        "test": "DB_PATH=./tmp/dbTest.json jest --detectOpenHandles"
     },
     "dependencies": {
         "bluebird": "^3.5.3",
@@ -25,6 +25,7 @@
         "@types/node": "^11.9.4",
         "frisby": "^2.1.1",
         "jest": "^24.1.0",
+        "jest-html-reporter": "^2.4.4",
         "ts-jest": "^23.10.5"
     }
 }

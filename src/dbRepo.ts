@@ -15,9 +15,9 @@ let db:{ [key:string]:Array<any>; } = {}
 
 /////// functions
 
-export function setDb(newDb:{ [key:string]:Array<any>; }){
+export async function setDb(newDb:{ [key:string]:Array<any>; }){
     db = newDb;
-    persistDB();
+    await persistDB();
 }
 
 async function loadFromFile(){
@@ -25,7 +25,7 @@ async function loadFromFile(){
     db = JSON.parse(content)
 }
 
-function persistDB(){
+async function persistDB(){
     fs.writeFileSync(
         dbPath,
         JSON.stringify(db,null,2)
@@ -34,7 +34,7 @@ function persistDB(){
 
 /////// crud functions
 
-export function save(name:string, obj:any):any{
+export async function save(name:string, obj:any): Promise<any>{
     db[name] = db[name] || []
     
     const id = obj.id || uuid()
@@ -43,18 +43,18 @@ export function save(name:string, obj:any):any{
     _.remove(db[name], (it:any) => it.id == id )
     db[name].push(obj)
 
-    persistDB()
+    await persistDB()
 
     return obj
 }
 
-export function findById(name:string, id: any){
+export async function findById(name:string, id: any): Promise<any>{
     return _.find(db[name], it => it.id == id)
 }
 
-export function list(name:string,criteria:{}){
+export async function list(name:string,criteria:{}): Promise<Array<any>>{
     //TODO implement filter by criteria
-    return db[name];
+    return db[name] || [];
 }
 
 /////// Main

@@ -1,7 +1,9 @@
 .vscode/
 node_modules/
 out/
+tmp/
 
+test-report.html
 yarn.lock
 
 *.log

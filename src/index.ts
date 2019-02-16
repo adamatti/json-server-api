@@ -18,21 +18,21 @@ app.get("/", (req,res) => {
 
 app.post("/:entity", async (req,res) => {
     const entity = req.params["entity"];
-    const obj = db.save(entity,req.body)
+    const obj = await db.save(entity,req.body)
     res.status(201).json(obj).end()
 })
 
-app.get("/:entity/:id", (req,res) => {
+app.get("/:entity/:id", async (req,res) => {
     const entity = req.params["entity"];
     const id = req.params["id"];
-    const obj = db.findById(entity,id);
+    const obj = await db.findById(entity,id);
 
     res.status(obj ? 200 : 404).json(obj).end()
 })
 
-app.get("/:entity", (req,res) => {
+app.get("/:entity", async (req,res) => {
     const entity = req.params["entity"];
-    const list = db.list(entity,req.query);
+    const list = await db.list(entity,req.query);
     res.status(200).json(list).end()
 })
 

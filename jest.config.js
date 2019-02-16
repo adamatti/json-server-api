@@ -4,5 +4,15 @@ module.exports = {
   verbose: false,
   globalSetup: "./test/setup.ts",
   globalTeardown: "./test/tearDown.ts",
-  bail: true
+  bail: true,
+  testPathIgnorePatterns: [
+    '/node_modules/',
+    '/out/'
+  ],
+  reporters: [
+    "default",
+    ["./node_modules/jest-html-reporter", {
+        "pageTitle": "Test Report"
+    }]
+]
 };
