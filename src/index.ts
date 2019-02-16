@@ -36,6 +36,11 @@ app.get("/:entity", async (req,res) => {
     res.status(200).json(list).end()
 })
 
+app.head("/:entity", async (req,res) => {
+    const entity = req.params["entity"];
+    const count = await db.count(entity,req.query);
+    res.send(`${count}`).end;
+})
 
 export const server = http.createServer(app)
 export const startPromise = Bluebird.fromCallback ( cb => {

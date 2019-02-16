@@ -57,5 +57,10 @@ export async function list(name:string,criteria:{}): Promise<Array<any>>{
     return db[name] || [];
 }
 
+export async function count(name:string, criteria: {}): Promise<number>{
+    const collection = db[name]
+    return collection ? collection.length : 0
+}
+
 /////// Main
 loadFromFile()
