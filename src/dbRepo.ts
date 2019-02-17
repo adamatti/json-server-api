@@ -16,7 +16,7 @@ export namespace db {
     ;
     db.read();
 
-    logger.debug("db started")
+    logger.debug(`db started[path: ${config.dbPath}]`)
 
     /////// functions
 
