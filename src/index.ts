@@ -1,4 +1,4 @@
-import db = require("./dbRepo")
+import { db } from "./dbRepo"
 import { logFactory } from "./log"
 import * as express from "express"
 import * as bodyParser from 'body-parser'
@@ -55,12 +55,16 @@ app.get("/", (req,res) => {
 app.post("/:entity", async (req,res) => {
     const entity = req.params["entity"];
     const obj = await db.save(entity,req.body)
+    logger.debug(`${entity} created [id: ${obj.id}]`)
     res.status(201).json(obj).end()
 })
 
 app.get("/:entity/:id", async (req,res) => {
     const entity = req.params["entity"];
     const id = req.params["id"];
+
+    logger.debug(`${entity} get [id: ${id}]`)
+
     let obj = await db.findById(entity,id);
 
     if (!obj){
@@ -78,13 +82,29 @@ app.get("/:entity/:id", async (req,res) => {
 app.get("/:entity", async (req,res) => {
     const entity = req.params["entity"];
     const list = await db.list(entity,req.query);
+    
+    logger.debug(`${entity} get all`)
+
     res.status(200).json(list).end()
 })
 
 app.head("/:entity", async (req,res) => {
     const entity = req.params["entity"];
     const count = await db.count(entity,req.query);
+
+    logger.debug(`${entity} count [${count}]`)
+
     res.send(`${count}`).end;
+})
+
+app.delete("/:entity/:id",async (req,res) => {
+    const entity = req.params["entity"];
+    const id = req.params["id"];
+
+    logger.debug(`${entity} delete [id: ${id}]`)
+
+    await db.remove(entity,id);
+    res.status(204).end()
 })
 
 export const server = http.createServer(app)

@@ -6,18 +6,21 @@ const logger = logFactory("embedded")
 const Joi = frisby.Joi
 
 test("embedded objects", async ()=>{
-    const person = {id:uuid(),name:"adamatti"}
+    const person = {id:uuid(),name:"embed"}
     // task belongs to person
     const task = {id: uuid(), personId: person.id, subject:"do domething"}
 
+    logger.debug("create person")
     await frisby.post("http://localhost:3000/people",person)
         .expect('status',201)
-        .promise()
+        .promise();
 
+    logger.debug("Create task")
     await frisby.post("http://localhost:3000/tasks",task)
         .expect('status',201)
-        .promise()
+        .promise();
 
+    logger.debug("Get task with people")
     await frisby.get(`http://localhost:3000/tasks/${task.id}?embed=person`)
         .expect('status',200)
         .then( res => {
@@ -28,10 +31,12 @@ test("embedded objects", async ()=>{
             expect(taskFromApi.personId).toBeUndefined();
             expect(personFromApi).toEqual(person);
         })
-        .promise()
-
-    await frisby.get(`http://localhost:3000/people/${person.id}?embed=tasks`)
+        .promise();
+    
+    logger.debug("Get people with task")
+    return frisby.get(`http://localhost:3000/people/${person.id}?embed=tasks`)
         .expect('status',200)
+        //.inspectJSON()
         .then( res => {
             const personFromApi = res.json
             const tasks = personFromApi.tasks;

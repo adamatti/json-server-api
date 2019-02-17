@@ -3,14 +3,16 @@
     "scripts": {
         "build": "tsc",
         "start": "ts-node src/index.ts",
-        "start:test":"DB_PATH=./tmp/dbTest.json npm start",
-        "test": "DB_PATH=./tmp/dbTest.json jest --detectOpenHandles"
+        "start:test": "DB_PATH=./tmp/dbTest.json npm start",
+        "pretest": "npm run build",
+        "test": "DB_PATH=./tmp/dbTest.json jest --detectOpenHandles --runInBand"
     },
     "dependencies": {
         "bluebird": "^3.5.3",
         "body-parser": "^1.18.3",
         "express": "^4.16.4",
         "lodash": "^4.17.11",
+        "lowdb": "^1.0.0",
         "pluralize": "^7.0.0",
         "ts-node": "^8.0.2",
         "typescript": "^3.3.3",
@@ -24,6 +26,7 @@
         "@types/frisby": "^2.0.5",
         "@types/jest": "^24.0.5",
         "@types/lodash": "^4.14.121",
+        "@types/lowdb": "^1.0.6",
         "@types/node": "^11.9.4",
         "frisby": "^2.1.1",
         "jest": "^24.1.0",
