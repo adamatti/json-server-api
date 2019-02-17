@@ -6,5 +6,7 @@ tmp/
 
 test-report.html
 yarn.lock
+db.json
 
 *.log
+*.tgz

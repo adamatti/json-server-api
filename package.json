@@ -1,8 +1,25 @@
 {
     "name": "json-server-api",
+    "description": "A json-server alternative",
     "version": "0.0.1",
     "license": "MIT",
+    "author": {
+        "name": "Marcelo Adamatti",
+        "email": "adamatti@gmail.com",
+        "url": "http://adamatti.github.io"
+    },
+    "homepage": "http://github.com/adamatti/json-server-api",
+    "bugs":{
+        "url": "http://github.com/adamatti/json-server-api/issues"
+    },
     "main": "dist/src/index.js",
+    "repository": {
+        "type": "git",
+        "url": "git+ssh://git@github.com/adamatti/json-server-api.git"
+    },
+    "keywords": [
+        "json","server","api","mongo","microservices"
+    ],
     "bin": {
         "json-server-api": "./dist/src/index.js",
         "jsa": "./dist/src/index.js"

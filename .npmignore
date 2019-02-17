@@ -1,0 +1,12 @@
+.vscode/
+test/
+tmp/
+
+.editorconfig
+db.json
+jest.config.js
+test-report.html
+tsconfig.json
+
+*.adoc
+*.log
