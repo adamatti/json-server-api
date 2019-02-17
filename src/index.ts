@@ -53,14 +53,14 @@ app.get("/", (req,res) => {
 })
 
 app.post("/:entity", async (req,res) => {
-    const entity = req.params["entity"];
+    const entity = pluralize(req.params["entity"],2);
     const obj = await db.save(entity,req.body)
     logger.debug(`${entity} created [id: ${obj.id}]`)
     res.status(201).json(obj).end()
 })
 
 app.get("/:entity/:id", async (req,res) => {
-    const entity = req.params["entity"];
+    const entity = pluralize(req.params["entity"],2);
     const id = req.params["id"];
 
     logger.debug(`${entity} get [id: ${id}]`)
@@ -80,7 +80,7 @@ app.get("/:entity/:id", async (req,res) => {
 })
 
 app.get("/:entity", async (req,res) => {
-    const entity = req.params["entity"];
+    const entity = pluralize(req.params["entity"],2);
     const list = await db.list(entity,req.query);
     
     logger.debug(`${entity} get all`)
@@ -89,7 +89,7 @@ app.get("/:entity", async (req,res) => {
 })
 
 app.head("/:entity", async (req,res) => {
-    const entity = req.params["entity"];
+    const entity = pluralize(req.params["entity"],2);
     const count = await db.count(entity,req.query);
 
     logger.debug(`${entity} count [${count}]`)
@@ -98,7 +98,7 @@ app.head("/:entity", async (req,res) => {
 })
 
 app.delete("/:entity/:id",async (req,res) => {
-    const entity = req.params["entity"];
+    const entity = pluralize(req.params["entity"],2);
     const id = req.params["id"];
 
     logger.debug(`${entity} delete [id: ${id}]`)
