@@ -1,12 +1,17 @@
 .vscode/
 test/
 tmp/
+src/
+dist/test
+dist/tmp
 
 .editorconfig
 db.json
 jest.config.js
 test-report.html
 tsconfig.json
+README.adoc
+Makefile
+yarn.lock
 
-*.adoc
 *.log
